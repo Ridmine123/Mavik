@@ -1,0 +1,478 @@
+/* Basic Page Styling */
+body {background-color: #f8f9fa;
+  font-family: "poppins", san serifs;
+  color: #333;
+  margin: 20px;
+}
+
+/* Headings */
+h1 {
+  color: #1a73e8;
+  text-align: Center;
+}
+h2{
+  color: #333;
+  border-bottom: 2px solid #1a73e8;
+  width: fit-content;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: center;
+  background: #1a73e8;
+  padding: 10px;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+  font-weight: bold;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+/* Images */
+img {
+  border-radius: 10px;
+  display: block;
+  margin: 10px auto;
+}
+
+/* Table */
+table {
+  border-collapse: collapse;
+  margin: 10px auto;
+  width: 80%;
+}
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #aaa;
+  }
+  th {
+    background-color: #1a73e8;
+    color: white;
+  }
+  
+  /* Form */
+  form {
+    width: 300px;
+    margin: 20px auto;
+  }
+  input textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  input[type="submit"] {
+    background-color: #1a73e8;
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: gray;
+  }
+  
+   
+  /* ABOUT SECTION - FLEXBOX */
+  .about-container {
+    display: flex;          /* Turn on flexbox */
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;             /* Space between text and image */
+    margin-top: 20px;
+  }
+  
+ .about-text {
+   width: 60%;    /* Text takes more space */}
+ 
+ .about-image {
+   width: 200px;
+   border-radius: 10px;
+ }
+ 
+ #about {
+   background: #f9f9f9;
+   padding: 40px 20px;
+   border-radius: 10px;
+   max-width: 900px;
+   margin: 40px auto;
+   box-shadow: 0 4px 10px
+   rpga(0,0,0,0,1);
+ }
+ 
+  /* your old CSS... */
+/* your old CSS... */
+/* your old CSS... */
+
+/* NEW ABOUT CONTAINER STYLING */
+#about {
+  background: #f9f9f9;
+  padding: 40px 20px;
+  border-radius: 10px;
+  max-width: 900px;
+  margin: 40px auto;
+  box-shadow: 0 4px 10px 
+  rgba(0, 0, 0, 0.1);
+}
+
+.about-container {
+  margin-top: 20px;
+}
+
+/* HERO SECTION */
+#hero {
+  height: 80vh;
+  background: linear-gradient (to bottom right, #1a73e8, #4dabf7);
+  color: white;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.hero-content h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+ .hero-btn {
+  display: inline-block;
+  background: white;
+  color: #1a73e8;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+ }
+ 
+ .hero-btn:hover {
+   background: #e3f2fd;
+ }
+   
+ /* SKILL SECTION */
+ #skills {
+   max-width: 1000px;
+   margin: 60px auto;
+   padding: 20px;
+   text-align: center;
+ }
+ 
+ .skills-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+   gap: 20px;
+    margin-top: 30px;
+ }
+ 
+   .skill-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0,1);
+    transition: transform 0.3s
+ }
+ 
+ .skill-card.hover {
+ transform: translateY(-5px);  
+ }
+
+ /* FOOTER SECTION */
+ #footer {
+   background: #111;
+    color: #fff;
+    text-align: center;
+    padding: 25px 20px;
+    margin-top: 80px;
+ }
+ 
+ #footer p {
+   margin-bottom: 10px;
+   font-size: 16px;
+   opacity: 0.8;
+ }
+ 
+ .social-links a{
+   color: #4dabf7;
+   margin: 0 10px;
+   text-decoration: none;
+   font-size: 16px;
+   transition: 0.3s;
+   }
+   
+   .social-links a:hover {
+     color: #82c9ff;
+   }
+   
+   /* MOBILE RESPONSIVE DESIGN */
+   @media (max-width: 768px) {
+     
+     /* HERO SECTION */
+     #hero h1 {
+       font-size: 32px;
+     }
+     
+     #hero h2 {
+       font-size: 18px;
+     }
+     
+     #hero p {
+       font-size: 16px;
+     }
+   
+   /* ABOUT SECTION */
+    .about-container {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .about-image img {
+       width: 200px;
+       margin: 0 auto 20px auto;
+    }
+    
+    /* SKILLS GRID */
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    /* CONTACT FORM */
+    #contact {
+      padding: 0 15px;
+    }
+    
+    /* FOOTER */
+    #footer {
+      padding: 20px;
+    }
+   }
+   
+   html {
+     scroll-behaviour: smooth;
+   }
+   
+   /* NAVBAR */
+   #navbar {
+     position: sticky;
+    top: 0;
+    background: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px
+    rpga(0,0,0,0,1);
+    z-index: 1000;
+   }
+   
+   #navbar nav {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     max-width: 1100px;
+     margin: auto;
+   }
+   
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #1a73e8;
+    }
+    
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: #1a73e8;
+    }
+    
+  /* Navbar shadow on scroll */
+   .scrolled {
+     box-shadow: 0 4px 12px
+     rgba(0,0,0,0,2);
+     transition: box-shadow 0.3s;
+   }
+   
+   .menu-toggle {
+     display: none;
+     font-size: 28px;
+     cursor: pointer;
+   }
+   
+   .menu-toggle {
+     display: block;
+     color: #1a73e8;
+   }
+   
+   /* Scroll animation */
+   .fade-in {
+     opacity: 0;
+     transform: translateY(20px);
+     transition: 0.8s ease-out;
+   }
+   
+   .fade-in.visible {
+     opacity: 1;
+     transform: translateY(0);
+   }
+   
+   #dark-toggle {
+     cursor: pointer;
+     font-size: 20px;
+     margin-left: 20px;
+   }
+   
+   body.dark-mode {
+     background: #121212;
+     color: #e0e0e0;
+   }
+   
+   body.dark-mode #hero {
+     background: linear-gradient(to bottom right, #1a1a1a, #333333);
+   }
+   
+   body.dark-mode .skill-card,
+   body.dark-mode .about-container,
+   body.dark-mode #contact {
+   background: #1e1e1e; 
+   color: #fff;
+   }
+   
+   body.dark-mode .hero-btn {
+     background: #4dabf7;
+     color: #121212;
+   }
+   
+   html {
+     scroll-behavior: smooth;
+   }
+   
+   button, .btn {
+    transition: 0.3s ease;
+   }
+   
+   button:hover, .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px
+    rgba(0,0,0,0,2);
+   }
+   
+   .container {
+     box-shadow: 0 4px 20px
+     rgba(0,0,0,0,1);
+   }
+   
+   section {
+     padding: 60px 20px;
+   }
+   
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Advanced Animations --- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.8s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide Left */
+.slide-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: 0.8s ease-out;
+}
+
+.slide-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Slide Right */
+.slide-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: 0.8s ease-out;
+}
+
+.slide-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Zoom Animation */
+.zoom-in {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: 0.8s ease-out;
+}
+
+.zoom-in.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger animation */
+.stagger > * {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: 0.7s ease-out;
+}
+
+.stagger.active > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger.active > *:nth-child(1) { transition-delay: .1s; }
+.stagger.active > *:nth-child(2) { transition-delay: .25s; }
+.stagger.active > *:nth-child(3) { transition-delay: .4s; }
+.stagger.active > *:nth-child(4) { transition-delay: .55s; }
+.stagger.active > *:nth-child(5) { transition-delay: .7s; }
+
+
+     
+    
+  

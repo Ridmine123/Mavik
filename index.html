@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ridwan — Portfolio</title>
+
+  <style>
+    /* ---------- Basic / Reset ---------- */
+    :root{
+      --primary: #1a73e8;
+      --primary-2: #4dabf7;
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --text: #222;
+      --muted: #666;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    a { color: inherit; }
+
+    /* ---------- NAVBAR ---------- */
+    #navbar{
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      z-index: 1000;
+    }
+    #navbar nav{
+      max-width: 1100px;
+      margin: 0 auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding: 10px 20px;
+      transition: padding 0.2s ease;
+    }
+    .logo { color: var(--primary); font-weight:700; font-size:20px; letter-spacing: .2px; }
+    .nav-links {
+      list-style:none;
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+    .nav-links a{
+      text-decoration:none;
+      color:#333;
+      font-weight:500;
+      padding:6px 10px;
+      border-radius:6px;
+    }
+    .nav-links a:hover{ color: var(--primary); background: rgba(26,115,232,0.06); }
+
+    .menu-toggle { display:none; font-size:26px; cursor:pointer; color:var(--primary); }
+    #dark-toggle { cursor:pointer; margin-left:12px; font-size:18px; }
+
+    /* subtle shadow when scrolled */
+    #navbar.scrolled nav { box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+
+    /* ---------- HERO ---------- */
+    #hero {
+      height: 78vh;
+      min-height: 420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+    }
+    .hero-content h1 { font-size: 48px; margin-bottom: 6px; }
+    .hero-content h2 { font-weight:300; margin-bottom: 16px; font-size:20px; opacity:0.95; }
+    .hero-content p { max-width: 800px; margin: 0 auto 26px auto; font-size:16px; opacity:0.95; }
+    .hero-btn {
+      display:inline-block;
+      background: white;
+      color: var(--primary);
+      padding: 12px 22px;
+      border-radius:10px;
+      font-weight:700;
+      text-decoration:none;
+      transition: background 0.25s, transform 0.12s;
+    }
+    .hero-btn:hover{ transform: translateY(-3px); background:#eaf4ff; }
+
+    /* ---------- PAGE CONTAINER / SECTIONS ---------- */
+    main{ max-width:1100px; margin: 40px auto; padding: 0 20px; }
+
+    section { margin-bottom: 40px; }
+
+    /* ABOUT */
+    #about{
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 900px;
+      margin: 0 auto 30px auto;
+      box-shadow: 0 6px 18px rgba(30,45,60,0.04);
+    }
+    .about-container{
+      display:flex;
+      gap: 20px;
+      align-items:center;
+      margin-top: 14px;
+    }
+    .about-text { width: 60%; }
+    .about-text h2{ margin-bottom:8px; font-size:22px; color:#1b2330; }
+    .about-text p{ color:var(--muted); }
+    .about-image img{ width: 220px; border-radius:12px; display:block; }
+
+    /* SKILLS */
+    #skills { max-width:1000px; margin: 20px auto; text-align:center; }
+    .skills-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap:20px;
+      margin-top:20px;
+    }
+    .skill-card{
+      background: var(--card);
+      padding:18px;
+      border-radius:10px;
+      box-shadow: 0 6px 18px rgba(30,45,60,0.04);
+      transition: transform 0.28s ease, box-shadow 0.28s;
+      text-align:left;
+    }
+    .skill-card h3{ margin-bottom:8px; color:#1b2330; }
+    .skill-card p{ color:var(--muted); font-size:14px; }
+    .skill-card:hover{ transform: translateY(-6px); }
+
+    /* CONTACT */
+    #contact { max-width:600px; margin: 40px auto; text-align:center; }
+    .contact-form{ display:flex; flex-direction:column; gap:14px; margin-top:18px; }
+    .contact-form input, .contact-form textarea {
+      padding:12px; border-radius:8px; border:1px solid #ddd; font-size:15px; width:100%;
+    }
+    .contact-form textarea{ height:120px; resize:none; }
+    .contact-form button{
+      padding:12px; border-radius:10px; border:none; background:var(--primary); color:white; font-weight:700; cursor:pointer;
+    }
+    .contact-form button:hover{ background:#1662c4; }
+
+    /* FOOTER */
+    footer { background:#111; color:white; padding:28px 20px; text-align:center; margin-top:36px; }
+    .social-links a { color: #4dabf7; margin: 0 8px; text-decoration:none; font-weight:600; }
+    .social-links a:hover{ color:#82c9ff; }
+
+    /* ---------- Fade-in animation (initial hidden) ---------- */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      will-change: opacity, transform;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- Dark mode ---------- */
+    body.dark-mode{
+      background: #0f1113;
+      color: #e6eef9;
+    }
+    body.dark-mode #hero { background: linear-gradient(135deg,#111214,#2a2a2a); }
+    body.dark-mode #about, body.dark-mode .skill-card, body.dark-mode .contact-form { background:#161718; box-shadow:none; color:#e6eef9; }
+    body.dark-mode footer { background: #0b0b0b; color:#cfdcff; }
+    body.dark-mode .hero-btn { background: #222; color: #fff; }
+    body.dark-mode .nav-links a { color: #ddd; }
+    body.dark-mode .logo { color: #82c9ff; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px){
+      .hero-content h1 { font-size: 36px; }
+      .hero-content h2 { font-size:18px; }
+    }
+
+    @media (max-width: 768px){
+      .nav-links { display:none; position:absolute; top:62px; right:18px; background:white; padding:12px; border-radius:10px; flex-direction:column; min-width:180px; box-shadow:0 8px 24px rgba(0,0,0,0.12); }
+      .menu-toggle { display:block; }
+      #dark-toggle{ display:inline-block; }
+
+      /* when opened via JS we'll set .open to show it */
+      .nav-links.open { display:flex; }
+
+      .about-container { flex-direction:column; text-align:center; }
+      .about-image img { width:200px; margin: 0 auto; }
+      .about-text { width:100%; }
+
+      .skills-grid { grid-template-columns: 1fr; }
+      #hero { height:auto; padding: 60px 20px; }
+    }
+
+    @media (max-width:420px){
+      .hero-content h1 { font-size:28px; }
+      .hero-content p { font-size:15px; }
+      .menu-toggle{ font-size:26px; }
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header id="navbar">
+    <nav>
+      <div style="display:flex;align-items:center;">
+        <h3 class="logo">Ridwan</h3>
+        <div id="dark-toggle" title="Toggle dark mode" aria-hidden="false" style="margin-left:12px;">🌙</div>
+      </div>
+
+      <div id="mobile-menu" class="menu-toggle" aria-label="Open menu" role="button">&#9776;</div>
+
+      <ul class="nav-links" id="nav-links" role="navigation" aria-label="Main navigation">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero" class="fade-in"
+  style="animation-delay: 0s;">
+    <div class="hero-content">
+      <h1>Ridwan Maroof</h1>
+      <h2>Future Surgeon • Tech Innovator • Vision Builder</h2>
+      <p>I am building a life of mastery — combining medicine, technology, creativity, and purpose.</p>
+      <a href="#about" class="hero-btn">Explore My World</a>
+    </div>
+  </section>
+
+  <main>
+    <!-- ABOUT -->
+    <section id="about" class="fade-in"
+    style="animation-delay: 0.3s;">
+      <div class="slide-left"></div>
+      <h2>About Me</h2>
+      <div class="about-container">
+        <div class="about-text">
+          <div class="slide-right "></div>
+          <p>Hello! I’m Ridwan — a student passionate about becoming one of the greatest surgeons in the world.
+          I believe in using technology to make surgeries safer and smarter.</p>
+          <p style="margin-top:10px;color:var(--muted);font-size:14px;">I’m learning web development, user interfaces, and exploring how AI can integrate with medical tools.</p>
+        </div>
+
+        <div class="about-image">
+          <img src="https://via.placeholder.com/400x400.png?text=Ridwan" alt="Ridwan Photo" class="zoom-in">
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="fade-in"
+    style="animation-delay: 0.6s;">
+      <h2>My Skills</h2>
+      <div class="skills-grid">
+        <div class="skills-container stagger"></div>
+        <div class="skill-card">
+          <h3>HTML</h3>
+          <p>Building clean, structured web pages with modern best practices.</p>
+        </div>
+        <div class="skill-card">
+          <h3>CSS</h3>
+          <p>Designing beautiful layouts, responsive designs, and modern UI styles.</p>
+        </div>
+        <div class="skill-card">
+          <h3>JavaScript</h3>
+          <p>Adding interaction, logic, and dynamic behavior to websites.</p>
+        </div>
+        <div class="skill-card">
+          <h3>Tech & Innovation</h3>
+          <p>Blending medicine, creativity, and technology for smarter solutions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="fade-in"
+    style="animation-delay: 0.9s;">
+      <h2></h2>Contact Me</h2>
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks — message sent (demo)');">
+        <input type="text"
+        placeholder="Your Name" required />
+        <input type="email"
+        placeholder="Your Email" required />
+        <textarea class="reveal" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="slide-right reveal"
+  style="transitional-delay: .2s;">
+    <p>© 2025 Ridwan Maroof — All Rights Reserved</p>
+    <div class="social-links" style="margin-top:10px;">
+      <a href="#" target="_blank">Instagram</a>
+      <a href="#" target="_blank">LinkedIn</a>
+      <a href="#" target="_blank">YouTube</a>
+      <a href="#" target="_blank">X</a>
+    </div>
+  </footer>
+
+  <!-- ---------- SCRIPTS: Sticky shadow, mobile menu, fade-in, dark mode (persistent) ---------- -->
+  <script>
+    (function(){
+      /* STICKY NAVBAR SHADOW */
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if(window.scrollY > 40) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+      });
+
+      /* MOBILE MENU TOGGLE */
+      const mobileMenu = document.getElementById('mobile-menu');
+      const navLinks = document.getElementById('nav-links');
+      mobileMenu.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+      });
+
+      /* Close mobile menu when clicking a link */
+      document.querySelectorAll('#nav-links a').forEach(a => {
+        a.addEventListener('click', () => {
+          if(navLinks.classList.contains('open')) navLinks.classList.remove('open');
+        });
+      });
+
+      /* FADE-IN ON SCROLL (Intersection Observer) */
+      document.addEventListener('DOMContentLoaded', () => {
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.18 };
+        const appearOnScroll = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if(entry.isIntersecting){
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, appearOptions);
+
+        faders.forEach(fader => appearOnScroll.observe(fader));
+      });
+
+      /* DARK MODE TOGGLE (with localStorage) */
+      const darkToggle = document.getElementById('dark-toggle');
+      const applyDark = (on) => {
+        if(on) {
+          document.body.classList.add('dark-mode');
+          darkToggle.textContent = '☀️';
+        } else {
+          document.body.classList.remove('dark-mode');
+          darkToggle.textContent = '🌙';
+        }
+      };
+
+      // load saved preference
+      try {
+        const saved = localStorage.getItem('ridwan_dark_mode');
+        if(saved === '1') applyDark(true);
+        else applyDark(false);
+      } catch(e) { /* ignore storage errors */ }
+
+      darkToggle.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark-mode');
+        try {
+          localStorage.setItem('ridwan_dark_mode', isDark ? '1' : '0');
+        } catch(e) {}
+        applyDark(isDark);
+      });
+
+    })();
+  </script>
+</body>
+</html>
